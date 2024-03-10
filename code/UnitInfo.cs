@@ -115,7 +115,7 @@ public sealed class UnitInfo : Component
 				break;
 			case 4: modifierName = "Cryptic";
 				break;
-			case 5: modifierName = "Gyrating";
+			case 5: modifierName = "Blazing";
 				break;
 		}
 	}
