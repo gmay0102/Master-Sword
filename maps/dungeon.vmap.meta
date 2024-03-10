@@ -1,0 +1,31 @@
+{
+  "publish": {
+    "Allowed": true,
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "dungeon",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "dungeon",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "MenuResources": "*",
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "apetavern.stone_slabs_01a#46411",
+        "fpopium.concrete_damaged_a#48377",
+        "caro.sky_001#27739",
+        "fpopium.plaster_f3#48509",
+        "fpopium.ceramic_tiles_b#48355"
+      ],
+      "Metadata": {
+        "SingleAssetSource": "maps/dungeon.vmap"
+      }
+    }
+  }
+}

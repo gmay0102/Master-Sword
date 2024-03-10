@@ -1,0 +1,46 @@
+{
+  "publish": {
+    "Allowed": true,
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "thornlands",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "thornlands",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "MenuResources": "*",
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "facepunch.floor_grass_wetdirt_blend_a#18652",
+        "facepunch.wood_a_hs#28970",
+        "tiled.rockycliff#42138",
+        "caro.sky_001#27739",
+        "polyhaven.rock_moss_01c#19773",
+        "facepunch.tree_oak_big_b#33691",
+        "polyhaven.rock_moss_01f#19777",
+        "polyhaven.rock_moss_02e#20429",
+        "polyhaven.rock_moss_02f#20430",
+        "polyhaven.rock_moss_02b#20426",
+        "polyhaven.rock_moss_02g#20431",
+        "fish.gt_shitty_pine_tree2#23038",
+        "facepunch.pine_bush_regular_c#29108",
+        "facepunch.rock_scatter_pile_05#47205",
+        "facepunch.rock_scatter_03#47200",
+        "facepunch.tree_oak_small_a#33693",
+        "polyhaven.rock_moss_01e#19776",
+        "facepunch.tree_oak_medium_a#33692",
+        "polyhaven.rock_moss_01a#19771",
+        "polyhaven.rock_moss_01d#19775"
+      ],
+      "Metadata": {
+        "SingleAssetSource": "maps/thornlands.vmap"
+      }
+    }
+  }
+}

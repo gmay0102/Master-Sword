@@ -1,0 +1,36 @@
+{
+  "publish": {
+    "Allowed": true,
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "testmap",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "testmap",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "MenuResources": "*",
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "apetavern.concrete_hs_01a#46406",
+        "apetavern.grass_01a#46402",
+        "semxy.bowieskybox#24718",
+        "fpopium.concrete_trim_a#48382",
+        "fpopium.ceramic_tiles#48354",
+        "fpopium.wooden_planks_b#48583",
+        "apetavern.parkbench#46413",
+        "fpopium.concrete_a#48364",
+        "caro.sky_001#27739",
+        "rust.field_day_breeze_01a#43855"
+      ],
+      "Metadata": {
+        "SingleAssetSource": "maps/testmap.vmap"
+      }
+    }
+  }
+}

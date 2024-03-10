@@ -1,0 +1,50 @@
+﻿@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+    <div class="vitals">
+        <p>💕 @GetHP()</p>
+    </div>
+
+    <div class="healthbars">
+        <div class="healthbar">
+            <div class="inner">
+                <div class="fill" style="width: @(Unit.Health / Unit.MaxHealth * 100f)%">
+                </div>
+            </div>
+        </div>
+        <div class="staminabar">
+            <div class="inner">
+                <div class="fill" style="width: @(Unit.Stamina / Unit.MaxStamina * 100f)%">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="xpbars">
+        <div class="xpbar">
+            <div class="inner">
+                <div class="fill" style="width: @(Unit.currentEXP / Unit.nextLevel * 100f)%">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</root>
+
+@code
+{
+    [Property] UnitInfo Unit { get; set; }
+
+    string GetHP()
+    {
+        var hp = (int)Unit.Health;
+        return $"{hp}";
+    }
+    
+    protected override int BuildHash()
+    {
+        return System.HashCode.Combine( GetHP(), @Unit.CurrentLevel, @Unit.Stamina, @Unit.currentEXP );
+    }
+}

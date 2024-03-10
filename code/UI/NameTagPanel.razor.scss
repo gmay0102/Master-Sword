@@ -1,0 +1,48 @@
+
+NameTagPanel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    flex-direction: column;
+
+    .nametag {
+        background-color: #0008;
+        border-radius: 5px;
+        overflow: hidden;
+        padding: 10px 20px;
+        justify-content: center;
+        align-items: center;
+        //backdrop-filter: blur( 2px ); - doesn't work on world panels!?!?!?
+        gap: 20px;
+        font-size: 15px;
+        font-family: Poppins;
+        color: #fff;
+    }
+
+    .healthbars {
+        > .healthbar {
+            width: 200px;
+            height: 32px;
+            background-color: #0009;
+            padding: 5px;
+
+            > .inner 
+            {
+                background-color:#1a1a1ade;
+                flex-grow: 1;
+                > .fill 
+                {
+                    height: 100%;
+                    background-color:red;
+
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,31 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+	<div class="title">
+		Sovereign Blade
+	</div>
+
+	<div class="buttons">
+	@loadMap
+	@funnySound
+	</div>
+
+</root>
+
+@code
+{
+
+	void loadMap( SceneFile file )
+	{
+		Log.Info( "Load Map" );
+	}
+
+	void funnySound( SceneFile file )
+	{
+		Log.Info( "Funny Sound Haha" );
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine( @loadMap, @funnySound );
+}

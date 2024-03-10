@@ -1,0 +1,36 @@
+﻿@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+    <div class="nametag">
+        <p>@Title()</p>
+    </div>
+
+    <div class="healthbars">
+        <div class="healthbar">
+            <div class="inner">
+                <div class="fill" style="width: @(Unit.Health / Unit.MaxHealth * 100f)%">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</root>
+
+@code{
+    [Property] UnitInfo Unit { get; set; }
+    [Property] public string name { get; set; }
+
+    string Title()
+    {
+        int level = Unit.CurrentLevel;
+        string title = Unit.modifierName;
+        return $"Level {level} {title} {name}";
+    }
+
+    protected override int BuildHash()
+    {
+        return System.HashCode.Combine( Title(), Unit.Health );
+    }
+}

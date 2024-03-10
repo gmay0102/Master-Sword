@@ -1,0 +1,224 @@
+{
+  "RootObject": {
+    "Id": "eeea3462-037c-4d46-b212-8dd1f7d07aa8",
+    "Name": "player",
+    "Tags": "player,trigger",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "SkinnedModelRenderer",
+        "AnimationGraph": null,
+        "BodyGroups": 341,
+        "BoneMergeTarget": null,
+        "CreateBoneObjects": false,
+        "MaterialGroup": null,
+        "MaterialOverride": null,
+        "Model": "models/citizen/citizen.vmdl",
+        "RenderType": "On",
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "CitizenAnimationHelper",
+        "BodyWeight": 1,
+        "EyeSource": null,
+        "EyesWeight": 1,
+        "HeadWeight": 1,
+        "Height": 1,
+        "IkLeftFoot": null,
+        "IkLeftHand": null,
+        "IkRightFoot": null,
+        "IkRightHand": null,
+        "LookAt": null,
+        "LookAtEnabled": false,
+        "Target": {
+          "_type": "component",
+          "go": "eeea3462-037c-4d46-b212-8dd1f7d07aa8",
+          "component_type": "SkinnedModelRenderer"
+        }
+      },
+      {
+        "__type": "CharacterController",
+        "Acceleration": 10,
+        "Bounciness": 0.05,
+        "GroundAngle": 45,
+        "Height": 64,
+        "IgnoreLayers": "",
+        "Radius": 12,
+        "StepHeight": 18
+      },
+      {
+        "__type": "UnitInfo",
+        "chanceOfModifier": 1,
+        "Constitution": 15,
+        "CurrentLevel": 1,
+        "Dexterity": 5,
+        "GetsModifier": true,
+        "Health": 2,
+        "HealthRegenTimer": 5,
+        "Stamina": 0,
+        "Strength": 5,
+        "Team": "Hero"
+      },
+      {
+        "__type": "Voice",
+        "Loopback": true,
+        "Mode": "PushToTalk",
+        "MorphScale": 2,
+        "MorphSmoothTime": 0.1,
+        "PushToTalkInput": "voice",
+        "Renderer": {
+          "_type": "component",
+          "go": "eeea3462-037c-4d46-b212-8dd1f7d07aa8",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "Volume": 1,
+        "WorldspacePlayback": true
+      },
+      {
+        "__type": "PlayerController",
+        "AnimationHelper": {
+          "_type": "component",
+          "go": "eeea3462-037c-4d46-b212-8dd1f7d07aa8",
+          "component_type": "CitizenAnimationHelper"
+        },
+        "DuckHeight": 28,
+        "Eye": {
+          "_type": "gameobject",
+          "go": "59e096aa-bdce-4a9d-b957-65d15bc7dd64"
+        },
+        "EyePosition": "0,0,63",
+        "Gravity": "0,0,800",
+        "HurtSound": "sound/jump.sound",
+        "OnJump": {
+          "Version": 5,
+          "UserData": {
+            "Title": "On Jump",
+            "id": "c8d0f350-862f-4822-9ce3-f9e50e0163ae"
+          },
+          "Variables": [],
+          "Nodes": [
+            {
+              "Id": 0,
+              "Type": "input"
+            }
+          ],
+          "Links": []
+        },
+        "StandHeight": 64,
+        "ViewModelCamera": {
+          "_type": "component",
+          "go": "59e096aa-bdce-4a9d-b957-65d15bc7dd64",
+          "component_type": "CameraComponent"
+        }
+      }
+    ],
+    "Children": [
+      {
+        "Id": "a98d1fe2-4c08-4cb7-8b2b-8425c7d7fa11",
+        "Name": "UI",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "ScreenPanel",
+            "AutoScreenScale": true,
+            "Opacity": 1,
+            "Scale": 1,
+            "ZIndex": 100
+          },
+          {
+            "__type": "Chat"
+          },
+          {
+            "__type": "Scoreboard"
+          }
+        ],
+        "Children": [
+          {
+            "Id": "903cf288-3be1-46c7-9a25-4c6374eb74c8",
+            "Name": "HUD",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "ScreenPanel",
+                "AutoScreenScale": true,
+                "Opacity": 1,
+                "Scale": 1,
+                "ZIndex": 100
+              },
+              {
+                "__type": "PlayerHud",
+                "Unit": {
+                  "_type": "component",
+                  "go": "eeea3462-037c-4d46-b212-8dd1f7d07aa8",
+                  "component_type": "UnitInfo"
+                }
+              }
+            ]
+          },
+          {
+            "Id": "b41611c0-cccc-4bc7-8aaa-4b3bdb0a6d73",
+            "Name": "World Nametag",
+            "Position": "0,0,85",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "WorldPanel",
+                "HorizontalAlign": "Center",
+                "LookAtCamera": true,
+                "PanelSize": "512,512",
+                "RenderScale": 0.8,
+                "VerticalAlign": "Center"
+              },
+              {
+                "__type": "NameTagPanel",
+                "name": "Adventurer",
+                "Unit": {
+                  "_type": "component",
+                  "go": "eeea3462-037c-4d46-b212-8dd1f7d07aa8",
+                  "component_type": "UnitInfo"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "aaa7a297-21a8-47dd-b8f2-84ebd53aa7ec",
+        "Name": "Head",
+        "Position": "0,0,60",
+        "Enabled": true,
+        "Children": [
+          {
+            "Id": "59e096aa-bdce-4a9d-b957-65d15bc7dd64",
+            "Name": "Viewmodel Camera",
+            "Position": "0,0,0",
+            "Tags": "skybox",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "CameraComponent",
+                "BackgroundColor": "0.33333,0.46275,0.52157,1",
+                "ClearFlags": "All",
+                "FieldOfView": 90,
+                "IsMainCamera": true,
+                "Orthographic": false,
+                "OrthographicHeight": 1204,
+                "Priority": 1,
+                "RenderExcludeTags": "",
+                "RenderTags": "light",
+                "TargetEye": "None",
+                "Viewport": "0,0,1,1",
+                "ZFar": 10000,
+                "ZNear": 10
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}

@@ -1,0 +1,96 @@
+{
+  "RootObject": {
+    "Id": "205aaf59-d342-40af-9acc-9f7f4db0dd34",
+    "Name": "boar",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "UnitInfo",
+        "chanceOfModifier": 1,
+        "Constitution": 8,
+        "CurrentLevel": 1,
+        "Dexterity": 5,
+        "GetsModifier": true,
+        "Health": 0,
+        "HealthRegenTimer": 5,
+        "Stamina": 0,
+        "Strength": 5,
+        "Team": "Enemy"
+      },
+      {
+        "__type": "SkinnedModelRenderer",
+        "AnimationGraph": null,
+        "BodyGroups": 18446744073709551615,
+        "BoneMergeTarget": null,
+        "CreateBoneObjects": false,
+        "MaterialGroup": null,
+        "MaterialOverride": null,
+        "Model": "models/props/capybara/capybara.vmdl",
+        "RenderType": "On",
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "BoxCollider",
+        "Center": "0,0,20",
+        "IsTrigger": false,
+        "Scale": "57,17,40",
+        "Static": false,
+        "Surface": null
+      },
+      {
+        "__type": "NavMeshAgent",
+        "Acceleration": 60,
+        "Height": 64,
+        "MaxSpeed": 120,
+        "Radius": 32,
+        "Separation": 0.4,
+        "UpdatePosition": true,
+        "UpdateRotation": true
+      },
+      {
+        "__type": "EnemyController",
+        "NavMeshAgent": {
+          "_type": "component",
+          "go": "205aaf59-d342-40af-9acc-9f7f4db0dd34",
+          "component_type": "NavMeshAgent"
+        }
+      },
+      {
+        "__type": "EnemyStats"
+      }
+    ],
+    "Children": [
+      {
+        "Id": "06d97c1b-74e0-45be-b3f7-14c8a821a65c",
+        "Name": "Name Tag",
+        "Position": "0,0,53.12992",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "WorldPanel",
+            "HorizontalAlign": "Center",
+            "LookAtCamera": true,
+            "PanelSize": "512,512",
+            "RenderScale": 1,
+            "VerticalAlign": "Center"
+          },
+          {
+            "__type": "NameTagPanel",
+            "name": "Boar",
+            "Unit": {
+              "_type": "component",
+              "go": "205aaf59-d342-40af-9acc-9f7f4db0dd34",
+              "component_type": "UnitInfo"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": [
+    "mong.capybara"
+  ]
+}

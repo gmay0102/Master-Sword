@@ -1,0 +1,15 @@
+{
+  "MasterVolume": "0.60,1.00,0",
+  "LoopedSounds": [
+    {
+      "SoundFile": "music/mshelena.vsnd",
+      "Volume": "0.20,1.00,0"
+    },
+    {
+      "SoundFile": "music/evening birds.vsnd",
+      "Volume": "0.10,1.00,0"
+    }
+  ],
+  "StingSounds": [],
+  "__references": []
+}

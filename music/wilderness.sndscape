@@ -1,0 +1,15 @@
+{
+  "MasterVolume": "0.80,1.00,0",
+  "LoopedSounds": [
+    {
+      "SoundFile": "music/msthornlands_exterior.vsnd",
+      "Volume": "0.10,1.00,0"
+    },
+    {
+      "SoundFile": "music/windy ambience.vsnd",
+      "Volume": "0.30,1.00,0"
+    }
+  ],
+  "StingSounds": [],
+  "__references": []
+}
