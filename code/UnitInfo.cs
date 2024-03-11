@@ -49,6 +49,8 @@ public sealed class UnitInfo : Component
 	[Property][Range( 1f, 15f, 1f )] public int CurrentLevel { get; set; } = 1;
 	[Property][Range( 1f, 100f, 1f )] public int chanceOfModifier { get; set; } = 1;
 
+	[Property] SoundEvent OnHurt { get; set; }
+
 	/// <summary>
 	/// Current Health
 	/// </summary>
@@ -132,15 +134,6 @@ public sealed class UnitInfo : Component
 				_nextHeal = 1f;
 			}
 		}	
-
-		if (_lastStamina >= 3f && Stamina != MaxStamina && Alive )
-		{
-			StaminaRegen = true;
-			_lastStamina = 0f;
-		}
-
-		if ( StaminaRegen )
-			StaminaDrain( -0.005f );
 	}
 
 	/// <summary>
@@ -157,7 +150,10 @@ public sealed class UnitInfo : Component
 
 		// Makes sure you aren't being healed, and then starts the lastDamage count
 		if ( damage > 0 )
+		{
 			_lastDamage = 0f;
+			Sound.Play( OnHurt, Transform.Position );
+		}
 
 		// If Health reached 0, set Alive to false
 		if ( Health <= 0 )
@@ -176,34 +172,5 @@ public sealed class UnitInfo : Component
 		GameObject.Destroy();
 	}
 
-	public void LevelUp()
-	{
-		CurrentLevel += 1;
-		Strength += 1;
-		Dexterity += 1;
-		Constitution += 1;
-		InitializeHealth();
-	}
 
-	public void AwardXP (float addedXP )
-	{
-		currentEXP += addedXP;
-		Log.Info( currentEXP );
-		LevelUp();
-	}
-
-	public void StaminaDrain (float staminaPercent )
-	{
-		if (!Alive ) return;
-
-		if ( Stamina == MaxStamina )
-			StaminaRegen = false;
-
-		staminaPercent *= MaxStamina;
-
-		Stamina = MathX.Clamp( Stamina - staminaPercent, 0f, MaxStamina );
-
-		if ( Stamina > 0 )
-			_lastStamina = 0f;
-	}
 }

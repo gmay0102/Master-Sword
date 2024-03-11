@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "Id": "205aaf59-d342-40af-9acc-9f7f4db0dd34",
+    "Id": "a193bdc1-155a-4d55-8ff5-15e88831f5a8",
     "Name": "boar",
     "Enabled": true,
     "Components": [
@@ -13,35 +13,24 @@
         "GetsModifier": true,
         "Health": 0,
         "HealthRegenTimer": 5,
+        "OnHurt": "sound/boarsight.sound",
         "Stamina": 0,
         "Strength": 5,
         "Team": "Enemy"
       },
       {
         "__type": "SkinnedModelRenderer",
-        "AnimationGraph": null,
         "BodyGroups": 18446744073709551615,
-        "BoneMergeTarget": null,
         "CreateBoneObjects": false,
-        "MaterialGroup": null,
-        "MaterialOverride": null,
         "Model": "models/props/capybara/capybara.vmdl",
         "RenderType": "On",
         "Tint": "1,1,1,1"
       },
       {
-        "__type": "BoxCollider",
-        "Center": "0,0,20",
-        "IsTrigger": false,
-        "Scale": "57,17,40",
-        "Static": false,
-        "Surface": null
-      },
-      {
         "__type": "NavMeshAgent",
-        "Acceleration": 60,
+        "Acceleration": 70,
         "Height": 64,
-        "MaxSpeed": 120,
+        "MaxSpeed": 100,
         "Radius": 32,
         "Separation": 0.4,
         "UpdatePosition": true,
@@ -51,17 +40,21 @@
         "__type": "EnemyController",
         "NavMeshAgent": {
           "_type": "component",
-          "go": "205aaf59-d342-40af-9acc-9f7f4db0dd34",
+          "go": "a193bdc1-155a-4d55-8ff5-15e88831f5a8",
           "component_type": "NavMeshAgent"
         }
       },
       {
-        "__type": "EnemyStats"
+        "__type": "BoxCollider",
+        "Center": "-2,0,19",
+        "IsTrigger": false,
+        "Scale": "60,20,38",
+        "Static": false
       }
     ],
     "Children": [
       {
-        "Id": "06d97c1b-74e0-45be-b3f7-14c8a821a65c",
+        "Id": "fd589a84-974d-4d38-ab30-a3a1eb642518",
         "Name": "Name Tag",
         "Position": "0,0,53.12992",
         "Enabled": true,
@@ -79,7 +72,7 @@
             "name": "Boar",
             "Unit": {
               "_type": "component",
-              "go": "205aaf59-d342-40af-9acc-9f7f4db0dd34",
+              "go": "a193bdc1-155a-4d55-8ff5-15e88831f5a8",
               "component_type": "UnitInfo"
             }
           }

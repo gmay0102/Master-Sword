@@ -24,7 +24,10 @@ public class PlayerController : Component
 	[Property] public Vector3 EyePosition { get; set; }
 	[Property] public CitizenAnimationHelper AnimationHelper { get; set; }
 	[Property] public CameraComponent ViewModelCamera { get; set; }
-	[Property] public SoundEvent HurtSound { get; set; }
+	[Property] public SoundEvent JumpSound { get; set; }
+	[Property] public SoundEvent SwingSound { get; set; }
+	[Property] public SoundEvent HitSound { get; set; }
+	[Property] public PlayerStats PlayerStats { get; set; }
 
 
 
@@ -38,13 +41,20 @@ public class PlayerController : Component
 	private RealTimeSince LastUngroundedTime { get; set; }
 	private bool WantsToCrouch { get; set; }
 	private TimeSince timeSinceStep;
+	private TimeSince _lastSwing;
 	private Vector3 EyeWorldPosition => Transform.Local.PointToWorld( EyePosition );
+	private Vector3 CurrentOffset = Vector3.Zero;
+
 
 
 
 	protected override void OnStart()
 	{
 		Animators.Add( AnimationHelper );
+
+		var clothing = ClothingContainer.CreateFromLocalUser();
+		clothing.Apply( ModelRenderer );
+
 
 		if ( IsProxy && ViewModelCamera.IsValid() )
 		{
@@ -157,6 +167,13 @@ public class PlayerController : Component
 			Eye.Transform.Position = EyeWorldPosition;
 			Eye.Transform.LocalRotation = EyeAngles.WithYaw( 0f );
 
+			var targetOffset = Vector3.Zero;
+			if ( IsCrouching ) targetOffset += Vector3.Down * DuckHeight;
+			CurrentOffset = Vector3.Lerp( CurrentOffset, targetOffset, Time.Delta * 10f );
+
+			Eye.Transform.Position = Eye.Transform.Position + CurrentOffset;
+
+
 			IsRunning = Input.Down( "Run" );
 		}
 
@@ -175,8 +192,8 @@ public class PlayerController : Component
 	private void UpdateModelVisibility()
 	{
 		if ( !ModelRenderer.IsValid() )
-			return;
-
+			return;	
+		
 		ModelRenderer.Enabled = true;
 
 		ModelRenderer.RenderType = IsProxy
@@ -194,6 +211,10 @@ public class PlayerController : Component
 
 		DoCrouchingInput();
 		DoMovementInput();
+		if ( Input.Pressed( "attack1" ) && _lastSwing >= 0.5f )
+		{
+			Swing();
+		}
 	}
 
 	protected virtual void DoCrouchingInput()
@@ -264,9 +285,9 @@ public class PlayerController : Component
 			animator.TriggerJump();
 		}
 
-		if ( HurtSound is not null )
+		if ( JumpSound is not null )
 		{
-			Sound.Play( HurtSound, Transform.Position.WithZ(64f) );
+			Sound.Play( JumpSound, Transform.Position.WithZ(64f) );
 		}
 
 		OnJump?.Invoke();
@@ -297,5 +318,37 @@ public class PlayerController : Component
 
 		var tr = CharacterController.TraceDirection( Vector3.Up * DuckHeight );
 		return !tr.Hit;
+	}
+
+	public void Swing()
+	{
+		if ( AnimationHelper != null )
+		{
+			AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.Swing;
+			AnimationHelper.Target.Set( "b_attack", true );
+			Sound.Play( SwingSound, Transform.Position.WithZ( 64f ) );
+		}
+
+		var swingTrace = Scene.Trace
+			.FromTo( Eye.Transform.Position, Eye.Transform.Position + EyeAngles.Forward * 100f )
+			.Size( 10f )
+			.WithoutTags( "player" )
+			.IgnoreGameObjectHierarchy( GameObject )
+			.Run();
+
+
+		if ( swingTrace.Hit )
+			if ( swingTrace.GameObject.Components.TryGet<UnitInfo>( out var unitInfo ) )
+			{
+				unitInfo.Damage( PlayerStats.Strength );
+				Sound.Play( HitSound, Transform.Position.WithZ( 64f ).WithX( 4f) );
+
+				if ( unitInfo.Health == 0 )
+					PlayerStats.gainXP( 55f );
+			}
+
+
+
+		_lastSwing = 0f;
 	}
 }

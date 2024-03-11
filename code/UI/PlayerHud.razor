@@ -25,7 +25,7 @@
     <div class="xpbars">
         <div class="xpbar">
             <div class="inner">
-                <div class="fill" style="width: @(Unit.currentEXP / Unit.nextLevel * 100f)%">
+                <div class="fill" style="width: @(Stats.currentXP / 100 * 100f)%">
                 </div>
             </div>
         </div>
@@ -36,6 +36,7 @@
 @code
 {
     [Property] UnitInfo Unit { get; set; }
+    [Property] PlayerStats Stats { get; set; }
 
     string GetHP()
     {
@@ -45,6 +46,6 @@
     
     protected override int BuildHash()
     {
-        return System.HashCode.Combine( GetHP(), @Unit.CurrentLevel, @Unit.Stamina, @Unit.currentEXP );
+        return System.HashCode.Combine( GetHP(), @Unit.CurrentLevel, @Unit.Stamina, @Stats.currentXP);
     }
 }

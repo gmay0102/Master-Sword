@@ -1,52 +1,38 @@
 using Sandbox;
 using Sandbox.Citizen;
 
-public sealed class EnemyController : Component, Component.ITriggerListener
+public sealed class EnemyController : Component
 {
 	[Property] NavMeshAgent NavMeshAgent { get; set; }
-	public Vector3 targetPosition { get; set; }
-	public Vector3 spawnPosition { get; set; }
-	public bool imGayNow { get; set; } = false;
 
-	protected override void OnAwake()
+
+
+	public Vector3 spawnPosition { get; set; }
+	public PlayerController targetPlayer;
+	private PlayerController localPlayer;
+
+	protected override void OnStart()
 	{
 		spawnPosition = NavMeshAgent.Transform.LocalPosition;
+		var players = Game.ActiveScene.GetAllComponents<PlayerController>().ToList();
+		targetPlayer = Game.Random.FromList( players );
+		Log.Info( $"Targeting {targetPlayer}" );
 	}
 	protected override void OnUpdate()
 	{
-		if ( IsProxy )
-			return;
+		if ( targetPlayer is null ) return;
 
-		if ( imGayNow == false)
-		{
-			foreach ( var player in Scene.GetAllComponents<CharacterController>() )
-				targetPosition = player.Transform.LocalPosition;	
-		}
+		if (Vector3.DistanceBetween(targetPlayer.Transform.Position, NavMeshAgent.Transform.Position) < 120f && targetPlayer is not null)
+			NavMeshAgent?.Stop();
 		else
-		{
-			targetPosition = spawnPosition;
-		}
+			NavMeshAgent?.MoveTo(targetPlayer.Transform.Position);
+
+		Log.Info( Vector3.DistanceBetween( targetPlayer.Transform.Position, NavMeshAgent.Transform.Position ));
 		
-		NavMeshAgent.MoveTo( targetPosition );
-	}
-
-	public void OnTriggerEnter( Collider other )
-	{
-		var player = other.Components.Get<OldPlayerController>();
-		if ( player != null )
-		{
-			BoarAttack( 5f );
-			imGayNow = true;
-
-		}
+	
 	}
 
 	public void BoarAttack( float damage )
-	{
-
-	}
-
-	public void OnTriggerExit( Collider other )
 	{
 
 	}
