@@ -23,7 +23,6 @@ public class PlayerController : Component
 	[Property] public Action OnJump { get; set; }
 	[Property] public Vector3 EyePosition { get; set; }
 	[Property] public CitizenAnimationHelper AnimationHelper { get; set; }
-	[Property] public CameraComponent ViewModelCamera { get; set; }
 	[Property] public SoundEvent JumpSound { get; set; }
 	[Property] public SoundEvent SwingSound { get; set; }
 	[Property] public SoundEvent HitSound { get; set; }
@@ -47,32 +46,12 @@ public class PlayerController : Component
 
 
 
-
-	protected override void OnStart()
-	{
-		Animators.Add( AnimationHelper );
-
-		var clothing = ClothingContainer.CreateFromLocalUser();
-		clothing.Apply( ModelRenderer );
-
-
-		if ( IsProxy && ViewModelCamera.IsValid() )
-		{
-			ViewModelCamera.Enabled = false;
-		}
-
-		base.OnStart();
-	}
-
-	public void ResetViewAngles()
-	{
-		var rotation = Rotation.Identity;
-		EyeAngles = rotation.Angles().WithRoll( 0f );
-	}
-
 	protected override void OnAwake()
 	{
 		base.OnAwake();
+
+		if ( IsProxy )
+			return;
 
 		ModelRenderer = Components.GetInDescendantsOrSelf<SkinnedModelRenderer>( true );
 
@@ -84,19 +63,31 @@ public class PlayerController : Component
 			CharacterController.Height = StandHeight;
 		}
 
-		if ( IsProxy )
-			return;
+		UpdateModelVisibility();
 
 		ResetViewAngles();
 	}
 
 	protected override void OnEnabled()
 	{
+		// Assigns 
 		ModelRenderer.OnFootstepEvent += OnEvent;
+	}
+
+	protected override void OnStart()
+	{
+		base.OnStart();
+
+		Animators.Add( AnimationHelper );
+
+		var clothing = ClothingContainer.CreateFromLocalUser();
+		clothing.Apply( ModelRenderer );
 	}
 
 	private void OnEvent( SceneModel.FootstepEvent e )
 	{
+		// Fancy code stolen from Facepunch that plays sound effects based on each foot tracing the surface below it
+
 		if ( timeSinceStep < 0.2f )
 			return;
 
@@ -122,40 +113,12 @@ public class PlayerController : Component
 		;
 	}
 
-	protected override void OnPreRender()
+	public void ResetViewAngles()
 	{
-		base.OnPreRender();
-
-		if ( !Scene.IsValid() || !Scene.Camera.IsValid() )
-			return;
-
-		UpdateModelVisibility();
-
-		if ( IsProxy )
-			return;
-
-		if ( !Eye.IsValid() )
-			return;
-
-		var idealEyePos = Eye.Transform.Position;
-		var headPosition = Transform.Position + Vector3.Up * CharacterController.Height;
-		var headTrace = Scene.Trace.Ray( Transform.Position, headPosition )
-			.UsePhysicsWorld()
-			.IgnoreGameObjectHierarchy( GameObject )
-			.WithAnyTags( "solid" )
-			.Run();
-
-		headPosition = headTrace.EndPosition - headTrace.Direction * 2f;
-
-		var trace = Scene.Trace.Ray( headPosition, idealEyePos )
-			.UsePhysicsWorld()
-			.IgnoreGameObjectHierarchy( GameObject )
-			.WithAnyTags( "solid" )
-			.Radius( 2f )
-			.Run();
-
-			Scene.Camera.Transform.Position = trace.Hit ? trace.EndPosition : idealEyePos;
+		var rotation = Rotation.Identity;
+		EyeAngles = rotation.Angles().WithRoll( 0f );
 	}
+
 	protected override void OnUpdate()
 	{
 		if ( !IsProxy )
@@ -173,7 +136,6 @@ public class PlayerController : Component
 
 			Eye.Transform.Position = Eye.Transform.Position + CurrentOffset;
 
-
 			IsRunning = Input.Down( "Run" );
 		}
 
@@ -189,32 +151,26 @@ public class PlayerController : Component
 		}
 	}
 
-	private void UpdateModelVisibility()
-	{
-		if ( !ModelRenderer.IsValid() )
-			return;	
-		
-		ModelRenderer.Enabled = true;
-
-		ModelRenderer.RenderType = IsProxy
-			? Sandbox.ModelRenderer.ShadowRenderType.On
-			: Sandbox.ModelRenderer.ShadowRenderType.ShadowsOnly;
-
-	}
-
-
 	protected override void OnFixedUpdate()
 	{
 		if ( IsProxy )
 			return;
 
-
 		DoCrouchingInput();
 		DoMovementInput();
 		if ( Input.Pressed( "attack1" ) && _lastSwing >= 0.5f )
-		{
 			Swing();
-		}
+	}
+
+	private void UpdateModelVisibility()
+	{
+		if ( !ModelRenderer.IsValid() )
+			return;	
+
+		ModelRenderer.RenderType = IsProxy
+			? Sandbox.ModelRenderer.ShadowRenderType.On
+			: Sandbox.ModelRenderer.ShadowRenderType.ShadowsOnly;
+
 	}
 
 	protected virtual void DoCrouchingInput()
@@ -281,14 +237,10 @@ public class PlayerController : Component
 	private void SendJumpMessage()
 	{
 		foreach ( var animator in Animators )
-		{
 			animator.TriggerJump();
-		}
 
 		if ( JumpSound is not null )
-		{
 			Sound.Play( JumpSound, Transform.Position.WithZ(64f) );
-		}
 
 		OnJump?.Invoke();
 	}
@@ -320,8 +272,10 @@ public class PlayerController : Component
 		return !tr.Hit;
 	}
 
-	public void Swing()
+	private void Swing()
 	{
+		if (IsProxy) return;
+		
 		if ( AnimationHelper != null )
 		{
 			AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.Swing;
@@ -336,7 +290,6 @@ public class PlayerController : Component
 			.IgnoreGameObjectHierarchy( GameObject )
 			.Run();
 
-
 		if ( swingTrace.Hit )
 			if ( swingTrace.GameObject.Components.TryGet<UnitInfo>( out var unitInfo ) )
 			{
@@ -346,8 +299,6 @@ public class PlayerController : Component
 				if ( unitInfo.Health == 0 )
 					PlayerStats.gainXP( 55f );
 			}
-
-
 
 		_lastSwing = 0f;
 	}

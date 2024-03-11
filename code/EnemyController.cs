@@ -22,14 +22,13 @@ public sealed class EnemyController : Component
 	{
 		if ( targetPlayer is null ) return;
 
-		if (Vector3.DistanceBetween(targetPlayer.Transform.Position, NavMeshAgent.Transform.Position) < 120f && targetPlayer is not null)
+		if ( Vector3.DistanceBetween( targetPlayer.Transform.Position, NavMeshAgent.Transform.Position ) < 120f && targetPlayer is not null )
+		{
 			NavMeshAgent?.Stop();
+			BoarAttack( 50f );
+		}
 		else
-			NavMeshAgent?.MoveTo(targetPlayer.Transform.Position);
-
-		Log.Info( Vector3.DistanceBetween( targetPlayer.Transform.Position, NavMeshAgent.Transform.Position ));
-		
-	
+			NavMeshAgent?.MoveTo( targetPlayer.Transform.Position );
 	}
 
 	public void BoarAttack( float damage )

@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "Id": "a193bdc1-155a-4d55-8ff5-15e88831f5a8",
+    "Id": "7e25a049-33ec-4582-9511-7d02b0f15643",
     "Name": "boar",
     "Enabled": true,
     "Components": [
@@ -40,7 +40,7 @@
         "__type": "EnemyController",
         "NavMeshAgent": {
           "_type": "component",
-          "go": "a193bdc1-155a-4d55-8ff5-15e88831f5a8",
+          "go": "7e25a049-33ec-4582-9511-7d02b0f15643",
           "component_type": "NavMeshAgent"
         }
       },
@@ -54,7 +54,7 @@
     ],
     "Children": [
       {
-        "Id": "fd589a84-974d-4d38-ab30-a3a1eb642518",
+        "Id": "526c918d-9828-4ed8-a8ce-6da235a0d7bb",
         "Name": "Name Tag",
         "Position": "0,0,53.12992",
         "Enabled": true,
@@ -72,7 +72,7 @@
             "name": "Boar",
             "Unit": {
               "_type": "component",
-              "go": "a193bdc1-155a-4d55-8ff5-15e88831f5a8",
+              "go": "7e25a049-33ec-4582-9511-7d02b0f15643",
               "component_type": "UnitInfo"
             }
           }

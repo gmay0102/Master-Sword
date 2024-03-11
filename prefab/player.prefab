@@ -2,7 +2,7 @@
   "RootObject": {
     "Id": "05b312ce-d22d-4750-8d02-a15e165a1447",
     "Name": "player",
-    "Tags": "player,trigger",
+    "Tags": "trigger,player",
     "Enabled": true,
     "Components": [
       {
@@ -76,8 +76,8 @@
           "_type": "gameobject",
           "go": "c94511d4-b1b7-4556-80b1-acd6436c66db"
         },
-        "EyePosition": "0,0,63",
-        "Gravity": "0,0,800",
+        "EyePosition": "0,0,64",
+        "Gravity": "0,0,700",
         "HitSound": "sound/hitflesh.sound",
         "JumpSound": "sound/jump.sound",
         "OnJump": {
@@ -204,15 +204,6 @@
                 "Model": "models/first_person/first_person_arms.vmdl",
                 "RenderType": "Off",
                 "Tint": "1,1,1,1"
-              },
-              {
-                "__type": "ViewModel",
-                "ModelRenderer": {
-                  "_type": "component",
-                  "go": "ee879d1d-2cdd-4c90-b228-052cce3905d5",
-                  "component_type": "SkinnedModelRenderer"
-                },
-                "UseSprintAnimation": false
               }
             ]
           },
