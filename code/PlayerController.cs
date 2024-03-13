@@ -325,6 +325,9 @@ public class PlayerController : Component
 				unitInfo.Damage( PlayerStats.Strength );
 				Sound.Play( HitSound, Transform.Position.WithZ( 64f ).WithX( 4f) );
 
+				var log = Scene.GetAllComponents<BattleLog>().FirstOrDefault();
+				log.AddTextLocal( $" {PlayerStats.Strength} damage dealt to {swingTrace.GameObject.Name}" );
+
 				if ( unitInfo.Health == 0 )
 					PlayerStats.gainXP( 55f );
 			}
@@ -348,8 +351,8 @@ public class PlayerController : Component
 			{
 				Sound.Play( PickUpSound, Transform.Position.WithZ( 64f ) );
 
-				var chat = Scene.GetAllComponents<Chat>().FirstOrDefault();
-				chat.AddTextLocal( "🎒", $"I've just picked up 1x {itemStats.IRarity} {swingTrace.GameObject.Name}" );
+				var log = Scene.GetAllComponents<BattleLog>().FirstOrDefault();
+				log.AddTextLocal( $"🎒 I've just picked up 1x {itemStats.IRarity} {swingTrace.GameObject.Name}" );
 				swingTrace.GameObject.Destroy();
 			}
 

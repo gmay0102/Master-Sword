@@ -33,4 +33,12 @@
         Entries.Add(new(message, 0f));
         StateHasChanged(); 
     }
+
+    protected override void OnUpdate()
+    {
+        if (Entries.RemoveAll(x => x.timeSinceAdded > 5f) > 0)
+        {
+            StateHasChanged();
+        }
+    }
 }
