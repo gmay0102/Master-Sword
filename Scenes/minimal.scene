@@ -6,6 +6,7 @@
       "Name": "Map",
       "Position": "531.6107,2123.984,571.8459",
       "Enabled": true,
+      "NetworkMode": 2,
       "Components": [
         {
           "__type": "MapInstance",
@@ -20,6 +21,7 @@
       "Name": "Network Helper",
       "Position": "0,0,4.683327",
       "Enabled": true,
+      "NetworkMode": 2,
       "Components": [
         {
           "__type": "NetworkHelper",
@@ -27,12 +29,7 @@
             "_type": "gameobject",
             "prefab": "prefab/player.prefab"
           },
-          "SpawnPoints": [
-            {
-              "_type": "gameobject",
-              "go": "ce908bad-8a81-4e87-921f-623f3c5c0422"
-            }
-          ],
+          "SpawnPoints": [],
           "StartServer": true
         }
       ]
@@ -42,6 +39,7 @@
       "Name": "Boar Spawner",
       "Position": "-102.6231,403.5167,171.0379",
       "Enabled": true,
+      "NetworkMode": 2,
       "Components": [
         {
           "__type": "EnemySpawner",
@@ -51,6 +49,186 @@
           }
         }
       ]
+    },
+    {
+      "Id": "55c1e289-9f07-4f73-8c70-7c3ec35c0e14",
+      "Name": "sword",
+      "Position": "90.13919,-67.10211,104.2099",
+      "Rotation": "0.3826834,0,0,0.9238796",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/sword.prefab"
+    },
+    {
+      "Id": "f850d02e-c0c0-4417-855f-97f599bc5aae",
+      "Name": "sword",
+      "Position": "23.82711,-78.5471,115.6548",
+      "Rotation": "0.3826834,0,0,0.9238796",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/sword.prefab"
+    },
+    {
+      "Id": "f8daa5da-49e1-4687-baa8-e1b087315bf5",
+      "Name": "sword",
+      "Position": "-30.96182,-61.74594,98.85361",
+      "Rotation": "0.3826834,0,0,0.9238796",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/sword.prefab"
+    },
+    {
+      "Id": "ea14d0d2-6290-48ae-b443-4ed4f37253b9",
+      "Name": "sword",
+      "Position": "-119.7402,-68.82275,105.9304",
+      "Rotation": "0.3826834,0,0,0.9238796",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/sword.prefab"
+    },
+    {
+      "Id": "140629d1-2876-479d-a192-d8f20c272b6e",
+      "Name": "sword",
+      "Position": "-174.2892,-44.02815,81.13577",
+      "Rotation": "0.3826834,0,0,0.9238796",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/sword.prefab"
+    },
+    {
+      "Id": "3959438c-3531-482b-95b1-1e736ca06e60",
+      "Name": "sword",
+      "Position": "-123.5567,3.178587,33.92903",
+      "Rotation": "0.3826834,0,0,0.9238796",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/sword.prefab"
+    },
+    {
+      "Id": "7f7cc038-141b-42ad-8f7f-441506e497ef",
+      "Name": "sword",
+      "Position": "-76.9821,-16.84303,53.95064",
+      "Rotation": "0.3826834,0,0,0.9238796",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/sword.prefab"
+    },
+    {
+      "Id": "15dacc70-16e4-4806-90b8-0eb01a1c38a2",
+      "Name": "potion",
+      "Position": "-62.11867,-105.1279,0",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/potion.prefab"
+    },
+    {
+      "Id": "098a8791-c0ef-44be-8f32-4681e477797f",
+      "Name": "potion",
+      "Position": "-62.11867,-165.3032,33.11303",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/potion.prefab"
+    },
+    {
+      "Id": "96178e04-5478-4c23-8fd8-1a525daf2eec",
+      "Name": "potion",
+      "Position": "-62.11867,-87.02433,48.20518",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/potion.prefab"
+    },
+    {
+      "Id": "90ab4c0c-a6a1-4840-b182-7d47dcf7fcb8",
+      "Name": "potion",
+      "Position": "-62.11867,-156.8611,41.82917",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/potion.prefab"
+    },
+    {
+      "Id": "e491e940-6f20-4e04-b887-0b08ac9e44d1",
+      "Name": "potion",
+      "Position": "-193.0817,-156.8611,62.05324",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/potion.prefab"
+    },
+    {
+      "Id": "d2e9c1f2-dc52-449a-9b2e-a265bac5c5d3",
+      "Name": "potion",
+      "Position": "-129.9587,-156.8611,45.27102",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/potion.prefab"
+    },
+    {
+      "Id": "2fe9f828-b6a4-413e-98f2-e92de945a3ac",
+      "Name": "potion",
+      "Position": "-80.68256,-199.1553,0",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/potion.prefab"
+    },
+    {
+      "Id": "1dc4f141-95af-4d24-85df-9ab0a5cbb54f",
+      "Name": "potion",
+      "Position": "-80.68256,-129.9427,44.11771",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/potion.prefab"
+    },
+    {
+      "Id": "83ec67af-924f-4252-9f78-3dc456321cd1",
+      "Name": "potion",
+      "Position": "-80.68256,-190.118,77.23074",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/potion.prefab"
+    },
+    {
+      "Id": "5ee39a43-d452-4023-bfdd-992174de535c",
+      "Name": "potion",
+      "Position": "-80.68256,-111.8391,92.32289",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/potion.prefab"
+    },
+    {
+      "Id": "e12d64f6-60ce-4326-a39e-d8ac2b452bcc",
+      "Name": "potion",
+      "Position": "-80.68256,-181.6758,85.94688",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/potion.prefab"
+    },
+    {
+      "Id": "208ccb61-4973-4690-9dd4-27eadabecca5",
+      "Name": "potion",
+      "Position": "-211.6456,-181.6758,106.1709",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/potion.prefab"
+    },
+    {
+      "Id": "2f9a6263-e3c1-42b9-ab50-f5ae2a2b6fd4",
+      "Name": "potion",
+      "Position": "-148.5226,-181.6758,89.38867",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefab/potion.prefab"
     }
   ],
   "SceneProperties": {
@@ -76,6 +254,6 @@
   },
   "Title": "minimal",
   "Description": "",
-  "LastSaved": "2024-03-11T01:00:50.6422324-04:00",
+  "LastSaved": "2024-03-12T15:20:21.0870034-04:00",
   "__references": []
 }

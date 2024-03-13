@@ -1,0 +1,46 @@
+{
+  "RootObject": {
+    "Id": "55c1e289-9f07-4f73-8c70-7c3ec35c0e14",
+    "Name": "sword",
+    "Tags": "interact",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "Components": [
+      {
+        "__type": "ModelRenderer",
+        "BodyGroups": 1,
+        "Model": "models/weapons/sword/sword.vmdl",
+        "RenderType": "On",
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "BoxCollider",
+        "Center": "0,0,17.7",
+        "IsTrigger": false,
+        "Scale": "15.29999,4.900005,52.99997",
+        "Static": false
+      },
+      {
+        "__type": "Rigidbody",
+        "AngularDamping": 0,
+        "Gravity": true,
+        "LinearDamping": 0,
+        "Locking": {},
+        "MassOverride": 0,
+        "RigidbodyFlags": 0,
+        "StartAsleep": false
+      },
+      {
+        "__type": "ItemStats",
+        "IRarity": "Rare"
+      }
+    ],
+    "Children": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": [
+    "fish.gt_sword"
+  ]
+}

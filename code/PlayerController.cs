@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.VisualBasic;
 using Sandbox;
 using Sandbox.Citizen;
 
@@ -16,9 +17,7 @@ public class PlayerController : Component
 	public SkinnedModelRenderer ModelRenderer { get; private set; }
 
 
-
-	[Property] public float StandHeight { get; set; } = 64f;
-	[Property] public float DuckHeight { get; set; } = 28f;
+	
 	[Property] public GameObject Eye { get; set; }
 	[Property] public Action OnJump { get; set; }
 	[Property] public Vector3 EyePosition { get; set; }
@@ -26,6 +25,7 @@ public class PlayerController : Component
 	[Property] public SoundEvent JumpSound { get; set; }
 	[Property] public SoundEvent SwingSound { get; set; }
 	[Property] public SoundEvent HitSound { get; set; }
+	[Property] public SoundEvent PickUpSound {  get; set; }
 	[Property] public PlayerStats PlayerStats { get; set; }
 
 
@@ -33,7 +33,9 @@ public class PlayerController : Component
 	[Sync] public Angles EyeAngles { get; set; }
 	[Sync] public bool IsCrouching { get; set; }
 	[Sync] public bool IsRunning { get; set; }
-	
+	public float StandHeight { get; set; } = 64f;
+	public float DuckHeight { get; set; } = 28f;
+
 
 
 	private RealTimeSince LastGroundedTime { get; set; }
@@ -63,8 +65,6 @@ public class PlayerController : Component
 			CharacterController.Height = StandHeight;
 		}
 
-		UpdateModelVisibility();
-
 		ResetViewAngles();
 	}
 
@@ -78,10 +78,15 @@ public class PlayerController : Component
 	{
 		base.OnStart();
 
+		if ( IsProxy && Eye.IsValid() )
+		{
+			Eye.Enabled = false;
+		}
+
 		Animators.Add( AnimationHelper );
 
-		var clothing = ClothingContainer.CreateFromLocalUser();
-		clothing.Apply( ModelRenderer );
+		//var clothing = ClothingContainer.CreateFromLocalUser();
+		//clothing.Apply( ModelRenderer );
 	}
 
 	private void OnEvent( SceneModel.FootstepEvent e )
@@ -123,29 +128,30 @@ public class PlayerController : Component
 	{
 		if ( !IsProxy )
 		{
+			// Rotates the GameObject based on mouse input
 			EyeAngles += Input.AnalogLook;
 			EyeAngles = EyeAngles.WithPitch( EyeAngles.pitch.Clamp( -85f, 85f ) );
 			Transform.Rotation = Rotation.FromYaw( EyeAngles.yaw );
 
+			// Keeps the camera at the player's head, then rotates it
 			Eye.Transform.Position = EyeWorldPosition;
 			Eye.Transform.LocalRotation = EyeAngles.WithYaw( 0f );
 
+			// Creates CurrentOffset which Lerps between standheight and duckheight for camera Z position
 			var targetOffset = Vector3.Zero;
 			if ( IsCrouching ) targetOffset += Vector3.Down * DuckHeight;
 			CurrentOffset = Vector3.Lerp( CurrentOffset, targetOffset, Time.Delta * 10f );
-
 			Eye.Transform.Position = Eye.Transform.Position + CurrentOffset;
 
+			// We runnin???
 			IsRunning = Input.Down( "Run" );
 		}
 
 		foreach ( var animator in Animators )
 		{
-			// animator.HoldType = weapon.IsValid() ? weapon.HoldType : CitizenAnimationHelper.HoldTypes.None;
 			animator.WithVelocity( CharacterController.Velocity );
 			animator.WithWishVelocity( WishVelocity );
 			animator.IsGrounded = CharacterController.IsOnGround;
-			animator.FootShuffle = 0f;
 			animator.DuckLevel = IsCrouching ? 1f : 0f;
 			animator.WithLook( EyeAngles.Forward );
 		}
@@ -157,9 +163,15 @@ public class PlayerController : Component
 			return;
 
 		DoCrouchingInput();
+
 		DoMovementInput();
+
 		if ( Input.Pressed( "attack1" ) && _lastSwing >= 0.5f )
 			Swing();
+
+		if ( Input.Pressed( "use" ) )
+			Interact();
+
 	}
 
 	private void UpdateModelVisibility()
@@ -170,6 +182,23 @@ public class PlayerController : Component
 		ModelRenderer.RenderType = IsProxy
 			? Sandbox.ModelRenderer.ShadowRenderType.On
 			: Sandbox.ModelRenderer.ShadowRenderType.ShadowsOnly;
+
+	}
+
+	protected override void OnPreRender()
+	{
+		base.OnPreRender();
+
+		if ( !Scene.IsValid() || !Scene.Camera.IsValid() )
+			return;
+
+		UpdateModelVisibility();
+
+		if ( IsProxy )
+			return;
+
+		if ( !Eye.IsValid() )
+			return;
 
 	}
 
@@ -301,5 +330,29 @@ public class PlayerController : Component
 			}
 
 		_lastSwing = 0f;
+	}
+
+	private void Interact()
+	{
+		if ( IsProxy ) return;
+
+		var swingTrace = Scene.Trace
+			.FromTo( Eye.Transform.Position, Eye.Transform.Position + EyeAngles.Forward * 100f )
+			.Size( 10f )
+			.WithoutTags( "player" )
+			.IgnoreGameObjectHierarchy( GameObject )
+			.Run();
+
+		if ( swingTrace.Hit )
+			if (swingTrace.GameObject.Components.TryGet<ItemStats>( out var itemStats ) )
+			{
+				Sound.Play( PickUpSound, Transform.Position.WithZ( 64f ) );
+
+				var chat = Scene.GetAllComponents<Chat>().FirstOrDefault();
+				chat.AddTextLocal( "🎒", $"I've just picked up 1x {itemStats.IRarity} {swingTrace.GameObject.Name}" );
+				swingTrace.GameObject.Destroy();
+			}
+
+
 	}
 }

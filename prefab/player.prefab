@@ -1,9 +1,10 @@
 {
   "RootObject": {
-    "Id": "05b312ce-d22d-4750-8d02-a15e165a1447",
+    "Id": "ec771d00-f77c-4350-ab80-c6592969546d",
     "Name": "player",
     "Tags": "trigger,player",
     "Enabled": true,
+    "NetworkMode": 2,
     "Components": [
       {
         "__type": "SkinnedModelRenderer",
@@ -22,7 +23,7 @@
         "LookAtEnabled": false,
         "Target": {
           "_type": "component",
-          "go": "05b312ce-d22d-4750-8d02-a15e165a1447",
+          "go": "ec771d00-f77c-4350-ab80-c6592969546d",
           "component_type": "SkinnedModelRenderer"
         }
       },
@@ -58,7 +59,7 @@
         "PushToTalkInput": "voice",
         "Renderer": {
           "_type": "component",
-          "go": "05b312ce-d22d-4750-8d02-a15e165a1447",
+          "go": "ec771d00-f77c-4350-ab80-c6592969546d",
           "component_type": "SkinnedModelRenderer"
         },
         "Volume": 1,
@@ -68,13 +69,12 @@
         "__type": "PlayerController",
         "AnimationHelper": {
           "_type": "component",
-          "go": "05b312ce-d22d-4750-8d02-a15e165a1447",
+          "go": "ec771d00-f77c-4350-ab80-c6592969546d",
           "component_type": "CitizenAnimationHelper"
         },
-        "DuckHeight": 28,
         "Eye": {
           "_type": "gameobject",
-          "go": "c94511d4-b1b7-4556-80b1-acd6436c66db"
+          "go": "e31b1c61-10ef-4e71-b1a7-7de094db1300"
         },
         "EyePosition": "0,0,64",
         "Gravity": "0,0,700",
@@ -95,12 +95,12 @@
           ],
           "Links": []
         },
+        "PickUpSound": "sound/pickup.sound",
         "PlayerStats": {
           "_type": "component",
-          "go": "05b312ce-d22d-4750-8d02-a15e165a1447",
+          "go": "ec771d00-f77c-4350-ab80-c6592969546d",
           "component_type": "PlayerStats"
         },
-        "StandHeight": 64,
         "SwingSound": "sound/swingsmall.sound"
       },
       {
@@ -117,9 +117,10 @@
     ],
     "Children": [
       {
-        "Id": "50f05937-8017-463d-9d5b-b6ac691c54b7",
+        "Id": "2d5e97d7-61ac-4894-97b7-2419f7115ca3",
         "Name": "UI",
         "Enabled": true,
+        "NetworkMode": 2,
         "Components": [
           {
             "__type": "ScreenPanel",
@@ -133,13 +134,17 @@
           },
           {
             "__type": "Scoreboard"
+          },
+          {
+            "__type": "BattleLog"
           }
         ],
         "Children": [
           {
-            "Id": "acf2d118-f453-4e04-8639-4d63aff0274a",
+            "Id": "9a766648-6c82-4129-a1ef-211039cfcdfc",
             "Name": "HUD",
             "Enabled": true,
+            "NetworkMode": 2,
             "Components": [
               {
                 "__type": "ScreenPanel",
@@ -152,22 +157,23 @@
                 "__type": "PlayerHud",
                 "Stats": {
                   "_type": "component",
-                  "go": "05b312ce-d22d-4750-8d02-a15e165a1447",
+                  "go": "ec771d00-f77c-4350-ab80-c6592969546d",
                   "component_type": "PlayerStats"
                 },
                 "Unit": {
                   "_type": "component",
-                  "go": "05b312ce-d22d-4750-8d02-a15e165a1447",
+                  "go": "ec771d00-f77c-4350-ab80-c6592969546d",
                   "component_type": "UnitInfo"
                 }
               }
             ]
           },
           {
-            "Id": "ce3e5eed-f80f-4caa-aeae-8a9391c0ca8b",
+            "Id": "77292f03-76a5-459c-8638-d66d34351565",
             "Name": "World Nametag",
             "Position": "0,0,85",
             "Enabled": true,
+            "NetworkMode": 2,
             "Components": [
               {
                 "__type": "WorldPanel",
@@ -182,55 +188,49 @@
         ]
       },
       {
-        "Id": "8c6f41c2-2af6-4445-9e6a-b36c1dad88ed",
-        "Name": "Head",
+        "Id": "e31b1c61-10ef-4e71-b1a7-7de094db1300",
+        "Name": "Camera",
+        "Position": "0,0,64",
         "Enabled": true,
-        "Children": [
+        "NetworkMode": 2,
+        "Components": [
           {
-            "Id": "ee879d1d-2cdd-4c90-b228-052cce3905d5",
-            "Name": "Viewmodel Arms",
-            "Tags": "viewmodel",
-            "Enabled": true,
-            "Components": [
-              {
-                "__type": "SkinnedModelRenderer",
-                "BodyGroups": 21,
-                "BoneMergeTarget": {
-                  "_type": "component",
-                  "go": "05b312ce-d22d-4750-8d02-a15e165a1447",
-                  "component_type": "SkinnedModelRenderer"
-                },
-                "CreateBoneObjects": false,
-                "Model": "models/first_person/first_person_arms.vmdl",
-                "RenderType": "Off",
-                "Tint": "1,1,1,1"
-              }
-            ]
-          },
+            "__type": "CameraComponent",
+            "BackgroundColor": "0.33333,0.46275,0.52157,1",
+            "ClearFlags": "All",
+            "FieldOfView": 90,
+            "IsMainCamera": false,
+            "Orthographic": false,
+            "OrthographicHeight": 1204,
+            "Priority": 2,
+            "RenderExcludeTags": "",
+            "RenderTags": "",
+            "TargetEye": "None",
+            "Viewport": "0,0,1,1",
+            "ZFar": 10000,
+            "ZNear": 0.1
+          }
+        ]
+      },
+      {
+        "Id": "0cf4e987-f5de-431a-aee0-82bd4bc404b1",
+        "Name": "Viewmodel Arms",
+        "Tags": "viewmodel",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "Components": [
           {
-            "Id": "c94511d4-b1b7-4556-80b1-acd6436c66db",
-            "Name": "Camera",
-            "Position": "0,0,64",
-            "Tags": "maincamera",
-            "Enabled": true,
-            "Components": [
-              {
-                "__type": "CameraComponent",
-                "BackgroundColor": "0.33333,0.46275,0.52157,1",
-                "ClearFlags": "All",
-                "FieldOfView": 90,
-                "IsMainCamera": true,
-                "Orthographic": false,
-                "OrthographicHeight": 1204,
-                "Priority": 1,
-                "RenderExcludeTags": "",
-                "RenderTags": "",
-                "TargetEye": "None",
-                "Viewport": "0,0,1,1",
-                "ZFar": 10000,
-                "ZNear": 10
-              }
-            ]
+            "__type": "SkinnedModelRenderer",
+            "BodyGroups": 21,
+            "BoneMergeTarget": {
+              "_type": "component",
+              "go": "ec771d00-f77c-4350-ab80-c6592969546d",
+              "component_type": "SkinnedModelRenderer"
+            },
+            "CreateBoneObjects": false,
+            "Model": "models/first_person/first_person_arms.vmdl",
+            "RenderType": "Off",
+            "Tint": "1,1,1,1"
           }
         ]
       }

@@ -1,23 +1,38 @@
 PlayerHud {
+	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	font-family: fantasy;
-	font-weight: bold;
-	border-radius: 20px;
-	gap: 10px;
+	font-family: Poppins;
 	font-size: 24px;
 	color: white;
-	text-shadow: 3px 3px 3px #000a;
+	text-shadow: 0 0 8px black;
+
+	> .center {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		justify-content: center;
+		align-items: center;
+
+		> .crosshair {
+			position: absolute;
+			opacity: 0.8;
+			width: 8px;
+			height: 8px;
+			background-image: url("code/ui/hud_reticle.png");
+			border-radius: 3px;
+			border: 1px black;
+		}
+	}
 
 	> .vitals {
 		position: absolute;
 		left: 32px;
 		bottom: 32px;
-		background-color: #0004;
 		border-radius: 3px;
-		border: 1px white;
+		border: 1px saddlebrown;
 		padding: 10px 20px;
 		color: white;
 		font-weight: bolder;
@@ -26,7 +41,7 @@ PlayerHud {
 		justify-content: center;
 		align-items: center;
 		gap: 16px;
-		backdrop-filter: blur( 20px );
+		background-image: url("code/ui/8l812dmgloaa1.png");
 	}
 
 	.healthbars {
@@ -35,18 +50,21 @@ PlayerHud {
 		left: 170px;
 		flex-direction: column;
 		border-radius: 3px;
-		border: 1px white;
+		border: 1px saddlebrown;
 		color: white;
+		background-image: url("code/ui/8l812dmgloaa1.png");
 
 		> .healthbar {
 			width: 200px;
 			height: 32px;
-			background-color: #0009;
 			padding: 5px;
+			box-shadow: 0px 0px 1px #00000050;
 
 			> .inner {
 				background-color: #1a1a1ade;
 				flex-grow: 1;
+				border: 2px black;
+				border-radius: 3px;
 
 				> .fill {
 					height: 100%;
@@ -58,12 +76,14 @@ PlayerHud {
 		> .staminabar {
 			width: 200px;
 			height: 32px;
-			background-color: #0009;
 			padding: 5px;
+			box-shadow: 0px 0px 1px #00000050;
 
 			> .inner {
 				background-color: #1a1a1ade;
 				flex-grow: 1;
+				border: 2px black;
+				border-radius: 3px;
 
 				> .fill {
 					height: 100%;
@@ -80,18 +100,21 @@ PlayerHud {
 		left: 32px;
 		flex-direction: column;
 		border-radius: 3px;
-		border: 1px white;
+		border: 1px saddlebrown;
 		color: white;
+		background-image: url("code/ui/8l812dmgloaa1.png");
 
 		> .xpbar {
 			width: 340px;
 			height: 32px;
-			background-color: #0009;
 			padding: 5px;
+			box-shadow: 0px 0px 1px #00000050;
 
 			> .inner {
 				background-color: #1a1a1ade;
 				flex-grow: 1;
+				border: 2px black;
+				border-radius: 3px;
 
 				> .fill {
 					height: 100%;

@@ -1,0 +1,36 @@
+@using System.Collections.Generic
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@implements Component.INetworkListener
+
+<root>
+	<div class="output">
+        @foreach (var entry in Entries)
+        {
+            <div class="log_entry">
+                <div class="message">@entry.message</div>
+            </div>
+        }
+    </div>
+</root>
+
+@code
+{
+    public record Entry( string message, RealTimeSince timeSinceAdded );
+
+    private List<Entry> Entries { get; set; } = new();
+
+    public void AddTextLocal( string message )
+    {
+        message = message.Truncate(300);
+
+        if (string.IsNullOrWhiteSpace(message))
+            return;
+
+        Log.Info($"{message}");
+
+        Entries.Add(new(message, 0f));
+        StateHasChanged(); 
+    }
+}
