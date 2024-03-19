@@ -20,12 +20,12 @@
 
 @code{
     [Property] UnitInfo Unit { get; set; }
-    [Property] public string name { get; set; }
 
     string Title()
     {
         int level = Unit.CurrentLevel;
         string title = Unit.modifierName;
+        string name = Unit.Name;
         return $"Level {level} {title} {name}";
     }
 

@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "Id": "55c1e289-9f07-4f73-8c70-7c3ec35c0e14",
+    "__guid": "55c1e289-9f07-4f73-8c70-7c3ec35c0e14",
     "Name": "sword",
     "Tags": "interact",
     "Enabled": true,
@@ -8,6 +8,7 @@
     "Components": [
       {
         "__type": "ModelRenderer",
+        "__guid": "ddc5c745-a6de-45b5-8dc2-d47c359588e4",
         "BodyGroups": 1,
         "Model": "models/weapons/sword/sword.vmdl",
         "RenderType": "On",
@@ -15,6 +16,7 @@
       },
       {
         "__type": "BoxCollider",
+        "__guid": "8bcf33b8-84b4-4689-86b8-ebd486b6e310",
         "Center": "0,0,17.7",
         "IsTrigger": false,
         "Scale": "15.29999,4.900005,52.99997",
@@ -22,17 +24,20 @@
       },
       {
         "__type": "Rigidbody",
+        "__guid": "676fa890-5e17-4f47-8f7a-6ea59440a80a",
         "AngularDamping": 0,
         "Gravity": true,
         "LinearDamping": 0,
         "Locking": {},
         "MassOverride": 0,
+        "MotionEnabled": true,
         "RigidbodyFlags": 0,
         "StartAsleep": false
       },
       {
         "__type": "ItemStats",
-        "IRarity": "Rare"
+        "__guid": "e6db4354-a3c2-47ca-8bf5-887854aa3a80",
+        "IRarity": "Random"
       }
     ],
     "Children": []
@@ -40,6 +45,8 @@
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__version": 1,
   "__references": [
     "fish.gt_sword"
   ]

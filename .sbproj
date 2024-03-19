@@ -27,7 +27,9 @@
     "CsProjName": "",
     "StartupScene": "scenes/minimal.scene",
     "ProjectTemplate": null,
-    "ControlModes": {},
+    "ControlModes": {
+      "Keyboard": true
+    },
     "InputSettings": {
       "Actions": [
         {
@@ -185,7 +187,7 @@
           "GroupName": "Other"
         },
         {
-          "Name": "Score",
+          "Name": "Inventory",
           "KeyboardCode": "tab",
           "GamepadCode": "SwitchLeftMenu",
           "GroupName": "Other"
@@ -206,7 +208,8 @@
           "KeyboardCode": "C",
           "GroupName": "Other"
         }
-      ]
+      ],
+      "__guid": "5bc575fb-e250-40c2-9c28-fb55210a6f1e"
     }
   }
 }

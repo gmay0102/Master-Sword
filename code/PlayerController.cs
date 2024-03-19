@@ -42,7 +42,7 @@ public class PlayerController : Component
 	private RealTimeSince LastUngroundedTime { get; set; }
 	private bool WantsToCrouch { get; set; }
 	private TimeSince timeSinceStep;
-	private TimeSince _lastSwing;
+	public TimeSince _lastSwing;
 	private Vector3 EyeWorldPosition => Transform.Local.PointToWorld( EyePosition );
 	private Vector3 CurrentOffset = Vector3.Zero;
 
@@ -172,6 +172,10 @@ public class PlayerController : Component
 		if ( Input.Pressed( "use" ) )
 			Interact();
 
+		if ( Input.Pressed( "score" ) )
+			Game.Overlay.ShowBinds();
+
+		Log.Info( _lastSwing );
 	}
 
 	private void UpdateModelVisibility()
@@ -310,6 +314,7 @@ public class PlayerController : Component
 			AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.Swing;
 			AnimationHelper.Target.Set( "b_attack", true );
 			Sound.Play( SwingSound, Transform.Position.WithZ( 64f ) );
+
 		}
 
 		var swingTrace = Scene.Trace
@@ -326,7 +331,7 @@ public class PlayerController : Component
 				Sound.Play( HitSound, Transform.Position.WithZ( 64f ).WithX( 4f) );
 
 				var log = Scene.GetAllComponents<BattleLog>().FirstOrDefault();
-				log.AddTextLocal( $" {PlayerStats.Strength} damage dealt to {swingTrace.GameObject.Name}" );
+				log.AddTextLocal( $"⚔ {PlayerStats.Strength} damage dealt to {unitInfo.modifierName} {unitInfo.Name}" );
 
 				if ( unitInfo.Health == 0 )
 					PlayerStats.gainXP( 55f );
@@ -341,7 +346,7 @@ public class PlayerController : Component
 
 		var swingTrace = Scene.Trace
 			.FromTo( Eye.Transform.Position, Eye.Transform.Position + EyeAngles.Forward * 100f )
-			.Size( 10f )
+			.Size( 5f )
 			.WithoutTags( "player" )
 			.IgnoreGameObjectHierarchy( GameObject )
 			.Run();

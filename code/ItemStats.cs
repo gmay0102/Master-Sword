@@ -3,6 +3,7 @@ using System;
 
 public enum ItemRarity
 {
+	[Icon( "shuffle" )] Random,
 	[Icon( "sentiment_neutral" )] Common,
 	[Icon( "sentiment_satisfied" )] Uncommon,
 	[Icon( "mood" )] Rare,
@@ -27,19 +28,27 @@ public sealed class ItemStats : Component
 	{
 		base.OnStart();
 
-		_rarityPicker = Game.Random.Next( 1, 4 );
 		
 
-		switch(_rarityPicker)
+		if ( IRarity == ItemRarity.Random )
 		{
-			case 1: IRarity = ItemRarity.Common;
-				break;
-			case 2: IRarity = ItemRarity.Uncommon;
-				break;
-			case 3: IRarity = ItemRarity.Rare;
-				break;
-			case 4: IRarity = ItemRarity.Exotic;
-				break;
+			_rarityPicker = Game.Random.Next( 1, 5 );
+
+			switch ( _rarityPicker )
+			{
+				case 1:
+					IRarity = ItemRarity.Common;
+					break;
+				case 2:
+					IRarity = ItemRarity.Uncommon;
+					break;
+				case 3:
+					IRarity = ItemRarity.Rare;
+					break;
+				case 4:
+					IRarity = ItemRarity.Exotic;
+					break;
+			}
 		}
 	}
 

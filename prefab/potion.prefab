@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "Id": "55c1e289-9f07-4f73-8c70-7c3ec35c0e14",
+    "__guid": "55c1e289-9f07-4f73-8c70-7c3ec35c0e14",
     "Name": "potion",
     "Tags": "interact",
     "Enabled": true,
@@ -8,6 +8,7 @@
     "Components": [
       {
         "__type": "ModelRenderer",
+        "__guid": "120f423d-88fe-4926-a9ec-c269f3a5531b",
         "BodyGroups": 1,
         "Model": "models/reizer_props/srsp/stylized/bottle/bottle_1a.vmdl",
         "RenderType": "On",
@@ -15,6 +16,7 @@
       },
       {
         "__type": "BoxCollider",
+        "__guid": "92c522db-8c15-4533-a498-3028178dac88",
         "Center": "0.3,0.3,4.3",
         "IsTrigger": false,
         "Scale": "5.399987,5.599999,8.700003",
@@ -22,17 +24,20 @@
       },
       {
         "__type": "Rigidbody",
+        "__guid": "7cf009ba-c16d-4dfa-b37e-a5165db90c94",
         "AngularDamping": 0,
         "Gravity": true,
         "LinearDamping": 0,
         "Locking": {},
         "MassOverride": 0,
+        "MotionEnabled": true,
         "RigidbodyFlags": 0,
         "StartAsleep": false
       },
       {
         "__type": "ItemStats",
-        "IRarity": "Common"
+        "__guid": "1e47a7b6-09ca-4063-8434-7ea6eb754993",
+        "IRarity": "Random"
       }
     ],
     "Children": []
@@ -40,6 +45,8 @@
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__version": 1,
   "__references": [
     "reizer.bottle_1a"
   ]

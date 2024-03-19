@@ -1,0 +1,53 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root class="@(InventoryOpen ? "" : "hide")">
+    
+	<div class="title">
+        Inventory
+    </div>
+
+    <div class="slots">
+        @for (int i = 0; i < Inventory.Slots; i++)
+        {
+            <div class="slot" onclick=@SlotClick> 
+            </div>
+        }
+    </div>
+</root>
+
+@code
+{
+    [Property] InventoryController Inventory { get; set; }
+    [Property] SoundEvent OpenSound { get; set; }
+    [Property] SoundEvent CloseSound { get; set; }
+    [Property] SoundEvent InteractSound { get; set; }
+
+    public bool InventoryOpen { get; set; } = false;
+
+    protected override void OnUpdate()
+    {
+        base.OnUpdate();
+
+        if ( Input.Pressed( "Inventory" ) )
+        {
+            InventoryOpen = !InventoryOpen;
+
+            if( InventoryOpen == true )
+                Sound.Play(OpenSound);
+            else
+                Sound.Play(CloseSound);
+        }
+    }
+
+    void SlotClick()
+    {
+        Sound.Play(InteractSound);
+    }
+
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash() => System.HashCode.Combine( Inventory.Slots, InventoryOpen );
+}

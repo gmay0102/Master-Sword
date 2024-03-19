@@ -2,37 +2,11 @@ using Sandbox;
 using Sandbox.Citizen;
 using System;
 using System.Security.Cryptography;
-public enum UnitType
-{
-	/// <summary>
-	/// For environmental units or resources
-	/// </summary>
-	[Icon( "check_box_outline_blank" )]None,
-	/// <summary>
-	/// Players
-	/// </summary>
-	[Icon( "groups" )] Hero,
-	/// <summary>
-	/// Boars, skeletons, dragons, grrrr
-	/// </summary>
-	[Icon( "bug_report" )] Enemy
-}
 
 [Icon( "psychology" )]
 public sealed class UnitInfo : Component
 {
-	[Property] UnitType Team { get; set; }
-	
-	/// <summary>
-	/// Controls damage and hit chance with STR based weaponry
-	/// </summary>
-	[Property][Range( 1f, 10f, 1f )] public float Strength { get; set; } = 5f;
-	
-	/// <summary>
-	/// Controls damage and hit chance with DEX based weaponry
-	/// </summary>
-	[Property][Range( 1f, 10f, 1f )] public float Dexterity { get; set; } = 5f;
-	
+	[Property] public string Name { get; set; }
 	/// <summary>
 	/// Sets max health and HP regen per second
 	/// </summary>
@@ -56,15 +30,11 @@ public sealed class UnitInfo : Component
 	/// </summary>
 	[Property] public float Health { get; private set; }
 
-	[Property] public float Stamina { get; set; }
-
 	[Property] public bool GetsModifier { get; set; } = false;
 
 	public bool Alive { get; private set; } = true;
 	
 	public float MaxHealth;
-
-	public float MaxStamina;
 	
 	public float HealthRegenAmount;
 	
@@ -72,17 +42,10 @@ public sealed class UnitInfo : Component
 	
 	private TimeUntil _nextHeal;
 
-	private TimeSince _lastStamina;
-
 	private int modifier;
 
 	public string modifierName;
 
-	private bool StaminaRegen = false;
-
-	public float currentEXP;
-
-	public float nextLevel = 100f;
 	protected override void OnStart()
 	{
 		InitializeHealth();
@@ -97,10 +60,8 @@ public sealed class UnitInfo : Component
 	public void InitializeHealth()
 	{
 		MaxHealth = Constitution;
-		MaxStamina = Constitution;
 		HealthRegenAmount = Constitution * 0.1f;
 		Health = MaxHealth;
-		Stamina = MaxStamina;
 	}
 
 	public void RandomModifier ( int modifier )

@@ -1,25 +1,25 @@
 {
   "RootObject": {
-    "Id": "7e25a049-33ec-4582-9511-7d02b0f15643",
+    "__guid": "a730bf62-ba42-439c-b5fe-56228e9ecd18",
     "Name": "boar",
     "Enabled": true,
+    "NetworkMode": 2,
     "Components": [
       {
         "__type": "UnitInfo",
+        "__guid": "15a5abad-9362-47d7-bef6-0c7b63a1a6d4",
         "chanceOfModifier": 1,
         "Constitution": 8,
         "CurrentLevel": 1,
-        "Dexterity": 5,
         "GetsModifier": true,
         "Health": 0,
         "HealthRegenTimer": 5,
-        "OnHurt": "sound/boarsight.sound",
-        "Stamina": 0,
-        "Strength": 5,
-        "Team": "Enemy"
+        "Name": "Boar",
+        "OnHurt": "sound/boarsight.sound"
       },
       {
         "__type": "SkinnedModelRenderer",
+        "__guid": "6a1871fb-4f9b-442e-8d61-414b90ef8a76",
         "BodyGroups": 18446744073709551615,
         "CreateBoneObjects": false,
         "Model": "models/props/capybara/capybara.vmdl",
@@ -28,6 +28,7 @@
       },
       {
         "__type": "NavMeshAgent",
+        "__guid": "4d5fe2f3-e0d1-4e1e-99fe-2b40d2437162",
         "Acceleration": 70,
         "Height": 64,
         "MaxSpeed": 100,
@@ -38,14 +39,24 @@
       },
       {
         "__type": "EnemyController",
+        "__guid": "2f99e9ad-4dc3-417a-98c6-9329648a553c",
         "NavMeshAgent": {
           "_type": "component",
-          "go": "7e25a049-33ec-4582-9511-7d02b0f15643",
+          "component_id": "4d5fe2f3-e0d1-4e1e-99fe-2b40d2437162",
+          "go": "a730bf62-ba42-439c-b5fe-56228e9ecd18",
           "component_type": "NavMeshAgent"
+        },
+        "Squeal": "sound/boarsight.sound",
+        "UnitInfo": {
+          "_type": "component",
+          "component_id": "15a5abad-9362-47d7-bef6-0c7b63a1a6d4",
+          "go": "a730bf62-ba42-439c-b5fe-56228e9ecd18",
+          "component_type": "UnitInfo"
         }
       },
       {
         "__type": "BoxCollider",
+        "__guid": "702304aa-9061-4fc2-8024-4632e6e26470",
         "Center": "-2,0,19",
         "IsTrigger": false,
         "Scale": "60,20,38",
@@ -54,13 +65,15 @@
     ],
     "Children": [
       {
-        "Id": "526c918d-9828-4ed8-a8ce-6da235a0d7bb",
+        "__guid": "1b128890-467c-476d-bf10-d45525a08ddf",
         "Name": "Name Tag",
         "Position": "0,0,53.12992",
         "Enabled": true,
+        "NetworkMode": 2,
         "Components": [
           {
             "__type": "WorldPanel",
+            "__guid": "134125bd-1bc7-4404-bd45-240ce290adb0",
             "HorizontalAlign": "Center",
             "LookAtCamera": true,
             "PanelSize": "512,512",
@@ -69,10 +82,11 @@
           },
           {
             "__type": "NameTagPanel",
-            "name": "Boar",
+            "__guid": "f3b55098-a958-4a8e-938a-6fe6057f2cf2",
             "Unit": {
               "_type": "component",
-              "go": "7e25a049-33ec-4582-9511-7d02b0f15643",
+              "component_id": "15a5abad-9362-47d7-bef6-0c7b63a1a6d4",
+              "go": "a730bf62-ba42-439c-b5fe-56228e9ecd18",
               "component_type": "UnitInfo"
             }
           }

@@ -18,6 +18,7 @@ public sealed class PlayerStats : Component
 
 	[Property] public SoundEvent levelUpSound;
 	[Property] public float Stamina { get; set; }
+	[Property] public float Health { get; private set; }
 
 
 
@@ -42,9 +43,14 @@ public sealed class PlayerStats : Component
 			Sound.Play( levelUpSound, Transform.LocalPosition );
 			currentLevel += 1;
 
-			var chat = Scene.GetAllComponents<Chat>().FirstOrDefault();
-			chat.AddTextLocal( "✨", $"I've just hit Level {currentLevel}" );
+			var log = Scene.GetAllComponents<BattleLog>().FirstOrDefault();
+			log.AddTextLocal( $"✨ I've just hit Level {currentLevel}" );
 		}
+	}
+
+	public void initialize()
+	{
+		Health = MaxHealth;
 	}
 
 	protected override void OnUpdate()

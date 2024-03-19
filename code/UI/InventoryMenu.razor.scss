@@ -1,0 +1,54 @@
+InventoryMenu {
+	position: absolute;
+	right: 5%;
+	bottom: 10%;
+	height: 70%;
+	width: 50%;
+	background-color: #444;
+	border-radius: 20px;
+	background-image: url("code/ui/8l812dmgloaa1.png");
+	flex-direction: column;
+	border-color: saddlebrown;
+	border-width: 1px;
+	pointer-events: all;
+
+	&.hide 
+	{
+		opacity: 0;
+	}
+
+
+
+	.title {
+		top: 5%;
+		left: 5%;
+		height: 64px;
+		width: 256px;
+		font-size: 32px;
+		font-family: Poppins;
+		color: #fff;
+		text-shadow: 0 0 8px black;
+		font-weight: bolder;
+	}
+
+	> .slots {
+		top: 10%;
+		left: 5%;
+		height: 60%;
+		width: 90%;
+		flex-wrap: wrap;
+		gap: 10px;
+		background-color: #0000004e;
+		border-color: saddlebrown;
+		border-width: 4px;
+		padding: 32px;
+
+		> .slot {
+			width: 86px;
+			height: 86px;
+			background-color: #0d0d0dec;
+			border-color: saddlebrown;
+			border-width: 4px;
+		}
+	}
+}

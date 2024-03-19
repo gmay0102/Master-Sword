@@ -4,12 +4,15 @@ using Sandbox.Citizen;
 public sealed class EnemyController : Component
 {
 	[Property] NavMeshAgent NavMeshAgent { get; set; }
+	[Property] UnitInfo UnitInfo { get; set; }
+	[Property] SoundEvent Squeal {  get; set; }
 
 
 
 	public Vector3 spawnPosition { get; set; }
 	public PlayerController targetPlayer;
 	private PlayerController localPlayer;
+	private bool _inAttack = false;
 
 	protected override void OnStart()
 	{
@@ -24,7 +27,6 @@ public sealed class EnemyController : Component
 
 		if ( Vector3.DistanceBetween( targetPlayer.Transform.Position, NavMeshAgent.Transform.Position ) < 120f && targetPlayer is not null )
 		{
-			NavMeshAgent?.Stop();
 			BoarAttack( 50f );
 		}
 		else
@@ -33,6 +35,16 @@ public sealed class EnemyController : Component
 
 	public void BoarAttack( float damage )
 	{
-
+		if ( !_inAttack )
+		{
+			_inAttack = true;
+			NavMeshAgent.Stop();
+			GameObject.Transform.Rotation = Rotation.LookAt( targetPlayer.Transform.Position - GameObject.Transform.Position );
+			Sound.Play( Squeal, GameObject.Transform.Position );
+		}
 	}
+
+	public void AmbientMode()
+	{ }
+
 }
