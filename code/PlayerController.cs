@@ -174,8 +174,6 @@ public class PlayerController : Component
 
 		if ( Input.Pressed( "score" ) )
 			Game.Overlay.ShowBinds();
-
-		Log.Info( _lastSwing );
 	}
 
 	private void UpdateModelVisibility()

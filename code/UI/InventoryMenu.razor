@@ -11,7 +11,7 @@
     <div class="slots">
         @for (int i = 0; i < Inventory.Slots; i++)
         {
-            <div class="slot" onclick=@SlotClick> 
+            <div class="slot" onclick=@SlotClick onmouseover=> 
             </div>
         }
     </div>
@@ -44,6 +44,11 @@
     void SlotClick()
     {
         Sound.Play(InteractSound);
+    }
+
+    void Hover()
+    {
+        Log.Info(Inventory.Slots);
     }
 
 	/// <summary>

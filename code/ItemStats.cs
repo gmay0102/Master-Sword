@@ -28,8 +28,6 @@ public sealed class ItemStats : Component
 	{
 		base.OnStart();
 
-		
-
 		if ( IRarity == ItemRarity.Random )
 		{
 			_rarityPicker = Game.Random.Next( 1, 5 );
@@ -51,7 +49,6 @@ public sealed class ItemStats : Component
 			}
 		}
 	}
-
 
 
 
