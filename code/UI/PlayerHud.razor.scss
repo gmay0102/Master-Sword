@@ -27,27 +27,10 @@ PlayerHud {
 		}
 	}
 
-	> .vitals {
-		position: absolute;
-		left: 32px;
-		bottom: 32px;
-		border-radius: 3px;
-		border: 1px saddlebrown;
-		padding: 10px 20px;
-		color: white;
-		font-weight: bolder;
-		font-size: 30px;
-		font-family: poppins;
-		justify-content: center;
-		align-items: center;
-		gap: 16px;
-		background-image: url("code/ui/8l812dmgloaa1.png");
-	}
-
 	.healthbars {
 		position: absolute;
-		bottom: 32px;
-		left: 170px;
+		bottom: 2%;
+		left: 2%;
 		flex-direction: column;
 		border-radius: 3px;
 		border: 1px saddlebrown;
@@ -55,7 +38,7 @@ PlayerHud {
 		background-image: url("code/ui/8l812dmgloaa1.png");
 
 		> .healthbar {
-			width: 200px;
+			width: 300px;
 			height: 32px;
 			padding: 5px;
 			box-shadow: 0px 0px 1px #00000050;
@@ -74,7 +57,7 @@ PlayerHud {
 		}
 
 		> .staminabar {
-			width: 200px;
+			width: 300px;
 			height: 32px;
 			padding: 5px;
 			box-shadow: 0px 0px 1px #00000050;
@@ -91,13 +74,32 @@ PlayerHud {
 				}
 			}
 		}
+
+		> .manabar {
+			width: 300px;
+			height: 32px;
+			padding: 5px;
+			box-shadow: 0px 0px 1px #00000050;
+
+			> .inner {
+				background-color: #1a1a1ade;
+				flex-grow: 1;
+				border: 2px black;
+				border-radius: 3px;
+
+				> .fill {
+					height: 100%;
+					background-color: dodgerblue;
+				}
+			}
+		}
 	}
 
 
 	> .xpbars {
 		position: absolute;
-		bottom: 120px;
-		left: 32px;
+		bottom: 2%;
+		right: 2%;
 		flex-direction: column;
 		border-radius: 3px;
 		border: 1px saddlebrown;

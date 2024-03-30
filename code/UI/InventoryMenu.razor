@@ -7,14 +7,6 @@
 	<div class="title">
         Inventory
     </div>
-
-    <div class="slots">
-        @for (int i = 0; i < Inventory.Slots; i++)
-        {
-            <div class="slot" onclick=@SlotClick onmouseover=> 
-            </div>
-        }
-    </div>
 </root>
 
 @code
@@ -29,7 +21,7 @@
     protected override void OnUpdate()
     {
         base.OnUpdate();
-
+         
         if ( Input.Pressed( "Inventory" ) )
         {
             InventoryOpen = !InventoryOpen;
@@ -48,11 +40,11 @@
 
     void Hover()
     {
-        Log.Info(Inventory.Slots);
+        Log.Info("Inventory.Slots");
     }
 
 	/// <summary>
 	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
 	/// </summary>
-	protected override int BuildHash() => System.HashCode.Combine( Inventory.Slots, InventoryOpen );
+	protected override int BuildHash() => System.HashCode.Combine( InventoryOpen );
 }

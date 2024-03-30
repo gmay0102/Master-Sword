@@ -1,7 +1,7 @@
 using Sandbox;
 using System;
 
-public enum ItemRarity
+public enum itemRarity
 {
 	[Icon( "shuffle" )] Random,
 	[Icon( "sentiment_neutral" )] Common,
@@ -10,9 +10,32 @@ public enum ItemRarity
 	[Icon( "sentiment_very_satisfied" )] Exotic
 }
 
+public enum EquipSlot : byte
+{
+	Head,
+	Face,
+	Body,
+	Legs,
+	Feet,
+	Hand
+}
+
 public sealed class ItemStats : Component
 {
-	[Property] public ItemRarity IRarity { get; set; }
+	[Property] public string Name { get; set; }
+	
+	[Property] public itemRarity ItemRarity { get; set; }
+	[Property] public string Description { get; set; }
+	/// <summary>
+	/// Weight in pounds
+	/// </summary>
+	[Property, Sync] public int Weight { get; set; }
+
+	/// <summary>
+	/// If -1, item cannot be sold
+	/// </summary>
+	[Property, Sync] public int Value { get; set; } = -1;
+
 
 
 
@@ -28,23 +51,23 @@ public sealed class ItemStats : Component
 	{
 		base.OnStart();
 
-		if ( IRarity == ItemRarity.Random )
+		if ( ItemRarity == itemRarity.Random )
 		{
 			_rarityPicker = Game.Random.Next( 1, 5 );
 
 			switch ( _rarityPicker )
 			{
 				case 1:
-					IRarity = ItemRarity.Common;
+					ItemRarity = itemRarity.Common;
 					break;
 				case 2:
-					IRarity = ItemRarity.Uncommon;
+					ItemRarity = itemRarity.Uncommon;
 					break;
 				case 3:
-					IRarity = ItemRarity.Rare;
+					ItemRarity = itemRarity.Rare;
 					break;
 				case 4:
-					IRarity = ItemRarity.Exotic;
+					ItemRarity = itemRarity.Exotic;
 					break;
 			}
 		}

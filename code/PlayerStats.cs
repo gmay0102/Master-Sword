@@ -16,9 +16,12 @@ public sealed class PlayerStats : Component
 	[Property] [Category( "Resource" )] public float MaxStamina;
 	[Property] [Category( "Resource" )] public float MaxMana;
 
+
+
 	[Property] public SoundEvent levelUpSound;
 	[Property] public float Stamina { get; set; }
 	[Property] public float Health { get; private set; }
+	[Property] public float Mana { get; set; }
 
 
 
@@ -27,6 +30,13 @@ public sealed class PlayerStats : Component
 	public float currentXP = 0f;
 	public int currentLevel = 1;
 
+	protected override void OnStart()
+	{
+		MaxHealth = Body;
+		MaxStamina = Body;
+		
+		initialize();
+	}
 
 	public void gainXP ( float gainedXP )
 	{
@@ -42,6 +52,9 @@ public sealed class PlayerStats : Component
 			Strength += 1f;
 			Sound.Play( levelUpSound, Transform.LocalPosition );
 			currentLevel += 1;
+			MaxHealth += Body;
+			MaxStamina += Body;
+			initialize();
 
 			var log = Scene.GetAllComponents<BattleLog>().FirstOrDefault();
 			log.AddTextLocal( $"✨ I've just hit Level {currentLevel}" );
@@ -51,6 +64,7 @@ public sealed class PlayerStats : Component
 	public void initialize()
 	{
 		Health = MaxHealth;
+		Stamina = MaxStamina;
 	}
 
 	protected override void OnUpdate()

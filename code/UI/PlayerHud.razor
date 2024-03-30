@@ -4,10 +4,6 @@
 
 <root>
 
-    <div class="vitals">
-        <p>💕 10</p>
-    </div>
-
     <div class="center">
         <div class="crosshair"></div>
     </div>
@@ -15,13 +11,22 @@
     <div class="healthbars">
         <div class="healthbar">
             <div class="inner">
-                <div class="fill" style="width: @(80 / 100 * 100f)%">
+                <div class="fill" style="width: @(Stats.Health / Stats.MaxHealth * 100f)%">
+                    <p>@Stats.Health</p>
                 </div>
             </div>
         </div>
         <div class="staminabar">
             <div class="inner">
-                <div class="fill" style="width: @(75 / 100 * 100f)%">
+                <div class="fill" style="width: @(@Stats.Stamina / @Stats.MaxStamina * 100f)%">
+                <p>@Stats.Stamina</p>
+                </div>
+            </div>
+        </div>
+        <div class="manabar">
+            <div class="inner">
+                <div class="fill" style="width: @(@Stats.Mana / @Stats.MaxMana * 100f)%">
+                    <p>@Stats.Mana</p>
                 </div>
             </div>
         </div>
@@ -50,6 +55,6 @@
     
     protected override int BuildHash()
     {
-        return System.HashCode.Combine( @Stats.currentXP );
+        return System.HashCode.Combine( @Stats.currentXP, @Stats.Health, @Stats.MaxHealth, @Stats.Stamina, @Stats.MaxStamina );
     }
 }

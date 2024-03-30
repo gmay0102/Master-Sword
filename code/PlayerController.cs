@@ -355,7 +355,7 @@ public class PlayerController : Component
 				Sound.Play( PickUpSound, Transform.Position.WithZ( 64f ) );
 
 				var log = Scene.GetAllComponents<BattleLog>().FirstOrDefault();
-				log.AddTextLocal( $"🎒 I've just picked up 1x {itemStats.IRarity} {swingTrace.GameObject.Name}" );
+				log.AddTextLocal( $"🎒 Obtained {itemStats.ItemRarity} {itemStats.Name}" );
 				swingTrace.GameObject.Destroy();
 			}
 

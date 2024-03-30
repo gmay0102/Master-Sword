@@ -15,14 +15,6 @@
         "Tint": "1,1,1,1"
       },
       {
-        "__type": "BoxCollider",
-        "__guid": "92c522db-8c15-4533-a498-3028178dac88",
-        "Center": "0.3,0.3,4.3",
-        "IsTrigger": false,
-        "Scale": "5.399987,5.599999,8.700003",
-        "Static": false
-      },
-      {
         "__type": "Rigidbody",
         "__guid": "7cf009ba-c16d-4dfa-b37e-a5165db90c94",
         "AngularDamping": 0,
@@ -35,9 +27,19 @@
         "StartAsleep": false
       },
       {
+        "__type": "ModelCollider",
+        "__guid": "ae601afe-646b-4c7b-84d9-b9c1c59dd1fd",
+        "IsTrigger": false,
+        "Model": "models/reizer_props/srsp/stylized/bottle/bottle_1a.vmdl",
+        "Static": false
+      },
+      {
         "__type": "ItemStats",
         "__guid": "1e47a7b6-09ca-4063-8434-7ea6eb754993",
-        "IRarity": "Random"
+        "ItemRarity": "Random",
+        "Name": "Potion",
+        "Value": -1,
+        "Weight": 0
       }
     ],
     "Children": []

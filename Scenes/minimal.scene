@@ -58,7 +58,7 @@
       "__guid": "55c1e289-9f07-4f73-8c70-7c3ec35c0e14",
       "Name": "sword",
       "Position": "90.13919,-67.10211,104.2099",
-      "Rotation": "0.3826834,0,0,0.9238796",
+      "Rotation": "0.2705981,0.270598,-0.6532815,0.6532816",
       "Enabled": true,
       "NetworkMode": 2,
       "__Prefab": "prefab/sword.prefab"
@@ -66,7 +66,7 @@
     {
       "__guid": "15dacc70-16e4-4806-90b8-0eb01a1c38a2",
       "Name": "potion",
-      "Position": "-115.4606,-145.8346,64",
+      "Position": "-124.103,-147.1174,60.96305",
       "Tags": "interact",
       "Enabled": true,
       "NetworkMode": 2,
@@ -83,6 +83,7 @@
         {
           "__type": "Prop",
           "__guid": "8c9bddcf-3748-4465-a5a2-4c67e96e1727",
+          "BodyGroups": 18446744073709551615,
           "Health": 0,
           "IsStatic": false,
           "Model": "models/m_pp_crate.vmdl"
@@ -113,7 +114,7 @@
   },
   "Title": "minimal",
   "Description": "",
-  "LastSaved": "2024-03-18T18:14:43.1850064-04:00",
+  "LastSaved": "2024-03-26T15:19:51.0466613-04:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [

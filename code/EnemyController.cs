@@ -13,17 +13,28 @@ public sealed class EnemyController : Component
 	public PlayerController targetPlayer;
 	private PlayerController localPlayer;
 	private bool _inAttack = false;
+	private bool _hasTarget = false;
 
 	protected override void OnStart()
 	{
 		spawnPosition = NavMeshAgent.Transform.LocalPosition;
-		var players = Game.ActiveScene.GetAllComponents<PlayerController>().ToList();
-		targetPlayer = Game.Random.FromList( players );
-		Log.Info( $"Targeting {targetPlayer}" );
+		//var players = Game.ActiveScene.GetAllComponents<PlayerController>().ToList();
+		//targetPlayer = Game.Random.FromList( players );
+		//Log.Info( $"Targeting {targetPlayer}" );
 	}
 	protected override void OnUpdate()
 	{
-		if ( targetPlayer is null ) return;
+		if ( _hasTarget ) return;
+
+		//var tr = Scene.Trace
+		//.Sphere( 32.0f, NavMeshAgent.Transform.Position, NavMeshAgent.Transform.Position + 32f ) // 32 is the radius
+		//.WithTag( "player" ) // ignore GameObjects with this tag
+		//.Run();
+
+		//if ( tr.Hit )
+		//{
+		//	Log.Info( $"Hit: {tr.GameObject} at {tr.EndPosition}" );
+		//}
 
 		if ( Vector3.DistanceBetween( targetPlayer.Transform.Position, NavMeshAgent.Transform.Position ) < 120f && targetPlayer is not null )
 		{
